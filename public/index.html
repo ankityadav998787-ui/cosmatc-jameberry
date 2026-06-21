@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glow Beauty Store</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<!-- COMPLIANCE BAR -->
+<div class="compliance-bar">
+  🔒 Secure checkout powered by Stripe &nbsp;|&nbsp;
+  <a onclick="showPage('refund')">Refund Policy</a> &nbsp;|&nbsp;
+  <a onclick="showPage('privacy')">Privacy Policy</a> &nbsp;|&nbsp;
+  <a onclick="showPage('terms')">Terms of Service</a> &nbsp;|&nbsp;
+  Questions? <a onclick="showPage('contact')">Contact Us</a>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" onclick="showPage('home')">✨ Glow Beauty</a>
+  <ul class="nav-links">
+    <li><a onclick="showPage('home')" id="nav-home" class="active">Shop</a></li>
+    <li><a onclick="showPage('contact')" id="nav-contact">Contact</a></li>
+    <li><a onclick="showPage('refund')" id="nav-refund">Returns</a></li>
+    <li><a href="/admin.html">Admin</a></li>
+  </ul>
+  <a class="nav-cart" onclick="showPage('checkout')">🛒 Cart (<span class="cart-count">0</span>)</a>
+</nav>
+
+<!-- =========== HOME =========== -->
+<div id="page-home" class="page active">
+  <header>
+    <h1>✨ Glow Beauty Store</h1>
+    <p>Discover Premium Beauty Products for Radiant Skin</p>
+  </header>
+
+  <section class="products" id="products-grid">
+    <div class="loading">Loading products…</div>
+  </section>
+
+  <div class="policy-section">
+    <h2>Our Commitment to You</h2>
+    <div class="policy-grid">
+      <div class="policy-card">
+        <h4>🔄 30-Day Returns</h4>
+        <p>Unused items in original packaging can be returned within 30 days for a full refund. <a onclick="showPage('refund')" style="color:#ff4f87;cursor:pointer">See full policy →</a></p>
+      </div>
+      <div class="policy-card">
+        <h4>🚚 Shipping</h4>
+        <p>Orders ship within 2–5 business days. Free standard shipping on orders over $40.</p>
+      </div>
+      <div class="policy-card">
+        <h4>🔒 Secure Payments</h4>
+        <p>All payments are processed securely through Stripe. We never store your card details.</p>
+      </div>
+      <div class="policy-card">
+        <h4>📞 Support</h4>
+        <p>Reach us at <span data-contact="phone">(606) 980-0000</span> or visit our <a onclick="showPage('contact')" style="color:#ff4f87;cursor:pointer">Contact page</a>.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- =========== CONTACT =========== -->
+<div id="page-contact" class="page">
+  <header style="padding:40px 30px"><h1>📞 Contact Us</h1><p>We're here to help — reach out any time</p></header>
+  <div class="contact-page">
+    <div class="contact-grid">
+      <div>
+        <div class="contact-info-box">
+          <h3>📍 Our Information</h3>
+          <div class="info-row"><div class="info-icon">🏢</div><div class="info-text"><strong>Business Address</strong><span data-contact="address">606 Glow Beauty Blvd, Suite 100<br>Leesburg, VA 20175<br>United States</span></div></div>
+          <div class="info-row"><div class="info-icon">📞</div><div class="info-text"><strong>Phone Number</strong><span data-contact="phone">(606) 980-0000</span></div></div>
+          <div class="info-row"><div class="info-icon">✉️</div><div class="info-text"><strong>Email</strong><span data-contact="email">support@glowbeautystore.com</span></div></div>
+          <div class="info-row"><div class="info-icon">🕐</div><div class="info-text"><strong>Business Hours</strong><span data-contact="hours">Mon–Fri 9am–6pm EST</span></div></div>
+        </div>
+        <div class="map-box" style="margin-top:20px" data-contact="map">📍 606 Glow Beauty Blvd, Leesburg VA 20175</div>
+      </div>
+      <div>
+        <div class="contact-form-box">
+          <h3>💬 Send a Message</h3>
+          <div class="form-group"><label>Your Name</label><input type="text" id="cf-name" placeholder="Jane Doe"></div>
+          <div class="form-group"><label>Email Address</label><input type="email" id="cf-email" placeholder="jane@example.com"></div>
+          <div class="form-group"><label>Order Number (optional)</label><input type="text" id="cf-order" placeholder="e.g. #ORD-10045"></div>
+          <div class="form-group"><label>Subject</label>
+            <select id="cf-subject"><option>Order Inquiry</option><option>Return / Refund</option><option>Product Question</option><option>Shipping Issue</option><option>Other</option></select>
+          </div>
+          <div class="form-group"><label>Message</label><textarea id="cf-message" placeholder="Tell us how we can help..."></textarea></div>
+          <button class="submit-btn" onclick="sendContactMessage()">Send Message</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- =========== REFUND =========== -->
+<div id="page-refund" class="page">
+  <header style="padding:40px 30px"><h1>🔄 Refund & Return Policy</h1><p>Last updated: June 2026</p></header>
+  <div class="policy-section">
+    <h2>Return Policy</h2>
+    <h3>Eligibility</h3><p>We accept returns within <strong>30 days</strong> of delivery. Items must be unused, in original condition and packaging.</p>
+    <h3>Non-Returnable Items</h3><ul><li>Opened skincare or beauty products (for hygiene reasons)</li><li>Gift cards or promotional credits</li><li>Items marked "Final Sale"</li></ul>
+    <h3>How to Initiate a Return</h3><p>Contact us at <strong data-contact="email">support@glowbeautystore.com</strong> or call <strong data-contact="phone">(606) 980-0000</strong> with your order number. We provide a prepaid return label for defective items.</p>
+    <h3>Refund Timeline</h3><p>Once received and inspected (1–3 business days), we notify you via email. Approved refunds are processed to your original payment method within <strong>5–7 business days</strong>.</p>
+    <h3>Exchanges</h3><p>We replace defective or damaged items at no cost.</p>
+    <h3>Cancellations</h3><p>Orders may be cancelled within <strong>24 hours</strong> of placement. Once shipped, the return process applies.</p>
+  </div>
+</div>
+
+<!-- =========== PRIVACY =========== -->
+<div id="page-privacy" class="page">
+  <header style="padding:40px 30px"><h1>🔐 Privacy Policy</h1><p>Last updated: June 2026</p></header>
+  <div class="policy-section">
+    <h2>Privacy Policy</h2>
+    <h3>Information We Collect</h3><p>We collect personal information you provide when ordering: name, email, shipping address, phone, and payment information. Payment data is processed securely by <strong>Stripe</strong> — we do not store card details on our servers.</p>
+    <h3>How We Use Your Information</h3><ul><li>Process and fulfill your orders</li><li>Send order confirmations and shipping updates</li><li>Respond to customer service inquiries</li><li>Improve our products and website</li></ul>
+    <h3>Data Sharing</h3><p>We do not sell or rent your personal information. We share data with trusted providers (shipping carriers, payment processors) solely to fulfill your order.</p>
+    <h3>Your Rights</h3><p>You may request access to, correction of, or deletion of your data by contacting <strong data-contact="email">support@glowbeautystore.com</strong>.</p>
+  </div>
+</div>
+
+<!-- =========== TERMS =========== -->
+<div id="page-terms" class="page">
+  <header style="padding:40px 30px"><h1>📋 Terms of Service</h1><p>Last updated: June 2026</p></header>
+  <div class="policy-section">
+    <h2>Terms of Service</h2>
+    <h3>1. Acceptance</h3><p>By placing an order on Glow Beauty Store, you agree to these Terms and our Privacy Policy.</p>
+    <h3>2. Products</h3><p>Products are described as accurately as possible. Colors may vary by screen. We may modify prices or discontinue products without notice.</p>
+    <h3>3. Ordering & Payment</h3><p>All orders are subject to availability. Payment is processed securely via Stripe at order time. Prices are in USD and include applicable taxes.</p>
+    <h3>4. Shipping</h3><p>We ship within the contiguous United States. Delivery estimates are 2–7 business days after dispatch.</p>
+    <h3>5. Returns & Refunds</h3><p>See our full <a onclick="showPage('refund')" style="color:#ff4f87;cursor:pointer">Refund Policy</a> for details.</p>
+    <h3>6. Limitation of Liability</h3><p>Our liability is limited to the purchase price of the item.</p>
+  </div>
+</div>
+
+<!-- =========== CHECKOUT =========== -->
+<div id="page-checkout" class="page">
+  <header style="padding:40px 30px"><h1>🛒 Checkout</h1><p>Complete your order securely</p></header>
+  <div class="checkout-wrap">
+    <div class="checkout-box">
+      <h3>Order Summary</h3>
+      <div id="cart-summary"></div>
+    </div>
+    <div id="checkout-forms">
+      <div class="checkout-box">
+        <h3>Shipping Information</h3>
+        <div class="form-group"><label>Full Name</label><input type="text" id="co-name" placeholder="Jane Doe"></div>
+        <div class="form-group"><label>Email</label><input type="email" id="co-email" placeholder="jane@example.com"></div>
+        <div class="form-group"><label>Address</label><input type="text" id="co-address" placeholder="123 Main St, Apt 4B"></div>
+        <div class="form-group"><label>City / State / ZIP</label><input type="text" id="co-city" placeholder="Leesburg, VA 20175"></div>
+      </div>
+      <div class="checkout-box">
+        <h3>Payment</h3>
+        <div class="secure-badge">🔒 Your payment is processed securely by Stripe. We never store your card details.</div>
+        <div class="form-group"><label>Card Number</label><input type="text" placeholder="1234 5678 9012 3456" maxlength="19"></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <div class="form-group"><label>Expiry</label><input type="text" placeholder="MM / YY" maxlength="7"></div>
+          <div class="form-group"><label>CVC</label><input type="text" placeholder="123" maxlength="4"></div>
+        </div>
+        <p style="font-size:12px;color:#aaa;margin-bottom:14px">By placing your order you agree to our <a onclick="showPage('terms')" style="color:#ff4f87;cursor:pointer">Terms</a>, <a onclick="showPage('privacy')" style="color:#ff4f87;cursor:pointer">Privacy Policy</a>, and <a onclick="showPage('refund')" style="color:#ff4f87;cursor:pointer">Refund Policy</a>.</p>
+        <button class="pay-btn" onclick="placeOrder()">Place Order – Pay Now</button>
+        <div class="stripe-seal">🔒 Secured by <strong>Stripe</strong> &nbsp;|&nbsp; 256-bit SSL Encryption</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col"><h4>✨ Glow Beauty Store</h4><p>Premium beauty products for radiant, healthy skin. Proudly serving customers nationwide.</p></div>
+    <div class="footer-col"><h4>Shop</h4><a onclick="showPage('home')">All Products</a><a onclick="showPage('checkout')">My Cart</a></div>
+    <div class="footer-col"><h4>Policies</h4><a onclick="showPage('refund')">Refund & Returns</a><a onclick="showPage('privacy')">Privacy Policy</a><a onclick="showPage('terms')">Terms of Service</a></div>
+    <div class="footer-col"><h4>Customer Support</h4>
+      <p data-contact="phone-foot">📞 (606) 980-0000</p>
+      <p data-contact="email-foot">✉️ support@glowbeautystore.com</p>
+      <p data-contact="address-foot">🏢 606 Glow Beauty Blvd, Suite 100<br>Leesburg, VA 20175</p>
+      <p data-contact="hours-foot" style="margin-top:6px">Mon–Fri 9am–6pm EST</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Glow Beauty Store | All Rights Reserved | Leesburg, VA 20175</p>
+    <div class="footer-legal"><a onclick="showPage('privacy')">Privacy</a><a onclick="showPage('terms')">Terms</a><a onclick="showPage('refund')">Returns</a><a onclick="showPage('contact')">Contact</a></div>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script src="/js/common.js"></script>
+<script src="/js/store.js"></script>
+</body>
+</html>
