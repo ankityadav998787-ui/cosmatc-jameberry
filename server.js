@@ -9,6 +9,22 @@ const db = require('./db');
 
 const app = express();
 app.use(express.json({ limit: '12mb' }));            // generous limit for base64 product images
+
+// CORS — lets a frontend hosted on a different origin (e.g. Vercel) call this API.
+// Set CORS_ORIGIN to your frontend URL in production to lock it down; defaults to "*".
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', process.env.CORS_ORIGIN || '*');
+  res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  if (req.method === 'OPTIONS') return res.sendStatus(204);
+  next();
+});
+
+// Health check — open this in a browser to confirm the backend is actually running.
+app.get('/api/health', (req, res) => {
+  res.json({ ok: true, products: db.getProducts().length, time: new Date().toISOString() });
+});
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 const ADMIN_USER = process.env.ADMIN_USER || 'admin';
