@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — Glow Beauty Store</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/">✨ Glow Beauty</a>
+  <ul class="nav-links">
+    <li><a href="/">View Store</a></li>
+  </ul>
+  <span></span>
+</nav>
+
+<!-- LOGIN -->
+<div id="login-view">
+  <div class="admin-login">
+    <div style="font-size:48px;margin-bottom:10px">🔐</div>
+    <h2>Admin Panel</h2>
+    <p>Sign in to manage your store</p>
+    <div class="form-group" style="text-align:left;margin-top:20px"><label>Username</label><input type="text" id="admin-user" placeholder="admin"></div>
+    <div class="form-group" style="text-align:left"><label>Password</label><input type="password" id="admin-pass" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()"></div>
+    <button class="submit-btn" onclick="doLogin()">Sign In</button>
+    <p style="margin-top:14px;color:#bbb">Demo login: <strong>admin</strong> / <strong>admin123</strong></p>
+  </div>
+</div>
+
+<!-- PANEL -->
+<div id="panel-view" style="display:none">
+  <div class="admin-panel">
+    <div class="admin-header">
+      <h2>🛠 Admin Panel</h2>
+      <button class="nav-cart" onclick="doLogout()">Sign Out</button>
+    </div>
+    <div class="admin-tabs">
+      <button class="admin-tab active" onclick="tab(event,'dashboard')">📊 Dashboard</button>
+      <button class="admin-tab" onclick="tab(event,'products')">🛍 Products</button>
+      <button class="admin-tab" onclick="tab(event,'contact')">📞 Contact Info</button>
+      <button class="admin-tab" onclick="tab(event,'orders')">📦 Orders</button>
+    </div>
+
+    <!-- DASHBOARD -->
+    <div id="sec-dashboard" class="admin-section active">
+      <div class="admin-grid">
+        <div class="stat-card"><div class="stat-num" id="stat-products">–</div><div class="stat-label">Products</div></div>
+        <div class="stat-card"><div class="stat-num" id="stat-revenue">$0</div><div class="stat-label">Revenue</div></div>
+        <div class="stat-card"><div class="stat-num" id="stat-orders">0</div><div class="stat-label">Orders</div></div>
+        <div class="stat-card"><div class="stat-num">✅</div><div class="stat-label">Stripe Connected</div></div>
+      </div>
+      <div class="policy-section" style="margin:0">
+        <h2>Stripe Compliance Checklist</h2>
+        <ul style="margin-top:14px">
+          <li style="margin-bottom:8px">✅ Business name displayed in header & footer</li>
+          <li style="margin-bottom:8px">✅ Physical business address listed on Contact page</li>
+          <li style="margin-bottom:8px">✅ Phone number listed</li>
+          <li style="margin-bottom:8px">✅ Email listed</li>
+          <li style="margin-bottom:8px">✅ Refund / Return Policy page</li>
+          <li style="margin-bottom:8px">✅ Privacy Policy page</li>
+          <li style="margin-bottom:8px">✅ Terms of Service page</li>
+          <li style="margin-bottom:8px">✅ Secure checkout notice on payment page</li>
+          <li style="margin-bottom:8px">✅ Product descriptions clear & accurate</li>
+          <li style="margin-bottom:8px">✅ No prohibited products listed</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- PRODUCTS -->
+    <div id="sec-products" class="admin-section">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">
+        <h3 style="color:#333">Products</h3>
+        <button class="btn" style="width:auto;padding:10px 20px" onclick="openAdd()">+ Add Product</button>
+      </div>
+      <div class="products-admin-grid" id="admin-products-grid"></div>
+    </div>
+
+    <!-- CONTACT -->
+    <div id="sec-contact" class="admin-section">
+      <div class="policy-section" style="margin:0;max-width:600px">
+        <h2>Contact Information</h2>
+        <p style="margin-bottom:20px;color:#888">Saved changes appear on the storefront Contact page, footer, and policy pages for every visitor.</p>
+        <div class="form-group"><label>Business Phone</label><input type="text" id="c-phone"></div>
+        <div class="form-group"><label>Business Email</label><input type="email" id="c-email"></div>
+        <div class="form-group"><label>Address Line 1</label><input type="text" id="c-addr1"></div>
+        <div class="form-group"><label>City / State / ZIP</label><input type="text" id="c-addr2"></div>
+        <div class="form-group"><label>Business Hours</label><input type="text" id="c-hours"></div>
+        <button class="save-btn" onclick="saveContact()">Save Contact Info</button>
+      </div>
+    </div>
+
+    <!-- ORDERS -->
+    <div id="sec-orders" class="admin-section">
+      <div class="policy-section" style="margin:0">
+        <h2>Orders</h2>
+        <div id="orders-list" style="margin-top:14px"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PRODUCT MODAL -->
+<div class="modal-bg" id="edit-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <h3 id="modal-title">Edit Product</h3>
+    <div class="photo-upload-area" onclick="document.getElementById('photo-upload').click()">
+      <img id="photo-preview" class="photo-preview" alt="Preview">
+      <p id="upload-hint">📷 Click to upload product photo</p>
+    </div>
+    <input type="file" id="photo-upload" accept="image/*" style="display:none" onchange="previewPhoto(this)">
+    <div class="form-group"><label>Image URL (optional, used if no upload)</label><input type="text" id="m-imgurl" placeholder="https://…"></div>
+    <div class="form-group"><label>Product Name</label><input type="text" id="m-name" placeholder="Product Name"></div>
+    <div class="form-group"><label>Description</label><textarea id="m-desc" placeholder="Short description..."></textarea></div>
+    <div class="form-group"><label>Price (USD)</label><input type="number" id="m-price" placeholder="19.99" step="0.01"></div>
+    <button class="save-btn" id="m-save" onclick="saveProduct()">Save Product</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="/js/common.js"></script>
+<script src="/js/admin.js"></script>
+</body>
+</html>

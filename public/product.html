@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product — Glow Beauty Store</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<div class="compliance-bar">
+  🔒 Secure checkout powered by Stripe &nbsp;|&nbsp;
+  <a href="/?page=refund">Refund Policy</a> &nbsp;|&nbsp;
+  <a href="/?page=privacy">Privacy Policy</a> &nbsp;|&nbsp;
+  <a href="/?page=terms">Terms of Service</a> &nbsp;|&nbsp;
+  Questions? <a href="/?page=contact">Contact Us</a>
+</div>
+
+<nav>
+  <a class="nav-logo" href="/">✨ Glow Beauty</a>
+  <ul class="nav-links">
+    <li><a href="/">Shop</a></li>
+    <li><a href="/?page=contact">Contact</a></li>
+    <li><a href="/?page=refund">Returns</a></li>
+    <li><a href="/admin.html">Admin</a></li>
+  </ul>
+  <a class="nav-cart" href="/?page=checkout">🛒 Cart (<span class="cart-count">0</span>)</a>
+</nav>
+
+<div class="breadcrumb"><a href="/">Shop</a> › <span id="bc-name">Product</span></div>
+
+<div id="product-root">
+  <div class="loading" style="padding:80px">Loading product…</div>
+</div>
+
+<!-- Related products -->
+<div id="related-wrap" style="display:none">
+  <h2 style="width:88%;margin:30px auto 0;color:#ff4f87;font-size:22px">You may also like</h2>
+  <section class="products" id="related-grid"></section>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col"><h4>✨ Glow Beauty Store</h4><p>Premium beauty products for radiant, healthy skin.</p></div>
+    <div class="footer-col"><h4>Shop</h4><a href="/">All Products</a><a href="/?page=checkout">My Cart</a></div>
+    <div class="footer-col"><h4>Policies</h4><a href="/?page=refund">Refund & Returns</a><a href="/?page=privacy">Privacy Policy</a><a href="/?page=terms">Terms of Service</a></div>
+    <div class="footer-col"><h4>Customer Support</h4>
+      <p data-contact="phone-foot">📞 (606) 980-0000</p>
+      <p data-contact="email-foot">✉️ support@glowbeautystore.com</p>
+    </div>
+  </div>
+  <div class="footer-bottom"><p>© 2026 Glow Beauty Store | All Rights Reserved</p></div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script src="/js/common.js"></script>
+<script src="/js/product.js"></script>
+</body>
+</html>
