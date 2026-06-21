@@ -1,0 +1,15 @@
+{
+  "name": "glow-beauty-store",
+  "version": "1.0.0",
+  "description": "Glow Beauty Store — full-stack e-commerce with admin panel (Express + JSON datastore)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
