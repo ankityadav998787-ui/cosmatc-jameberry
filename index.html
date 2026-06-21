@@ -193,7 +193,7 @@ footer{background:#222;color:white;padding:36px 30px 20px;margin-top:50px}
       </div>
       <div class="policy-card">
         <h4>📞 Support</h4>
-        <p>Reach us at (606) 980-0000 or visit our <a href="#" onclick="showPage('contact')" style="color:#ff4f87">Contact page</a>.</p>
+        <p>Reach us at <span id="policy-phone">(606) 980-0000</span> or visit our <a href="#" onclick="showPage('contact')" style="color:#ff4f87">Contact page</a>.</p>
       </div>
     </div>
   </div>
@@ -235,7 +235,7 @@ footer{background:#222;color:white;padding:36px 30px 20px;margin-top:50px}
             <div class="info-icon">🕐</div>
             <div class="info-text">
               <strong>Business Hours</strong>
-              <span>Monday – Friday: 9:00 AM – 6:00 PM EST<br>Saturday: 10:00 AM – 4:00 PM EST<br>Sunday: Closed</span>
+              <span id="contact-hours">Monday – Friday: 9:00 AM – 6:00 PM EST<br>Saturday: 10:00 AM – 4:00 PM EST<br>Sunday: Closed</span>
             </div>
           </div>
         </div>
@@ -272,7 +272,7 @@ footer{background:#222;color:white;padding:36px 30px 20px;margin-top:50px}
             <label>Message</label>
             <textarea placeholder="Tell us how we can help..."></textarea>
           </div>
-          <button class="submit-btn" onclick="showToast('Message sent! We'll reply within 24 hours.')">Send Message</button>
+          <button class="submit-btn" onclick="showToast('Message sent! We\'ll reply within 24 hours.')">Send Message</button>
         </div>
       </div>
     </div>
@@ -411,16 +411,16 @@ footer{background:#222;color:white;padding:36px 30px 20px;margin-top:50px}
       <button class="nav-cart" onclick="adminLogout()">Sign Out</button>
     </div>
     <div class="admin-tabs">
-      <button class="admin-tab active" onclick="adminTab('dashboard')">📊 Dashboard</button>
-      <button class="admin-tab" onclick="adminTab('products')">🛍 Products</button>
-      <button class="admin-tab" onclick="adminTab('contact-settings')">📞 Contact Info</button>
-      <button class="admin-tab" onclick="adminTab('orders')">📦 Orders</button>
+      <button class="admin-tab active" onclick="adminTab(event,'dashboard')">📊 Dashboard</button>
+      <button class="admin-tab" onclick="adminTab(event,'products')">🛍 Products</button>
+      <button class="admin-tab" onclick="adminTab(event,'contact-settings')">📞 Contact Info</button>
+      <button class="admin-tab" onclick="adminTab(event,'orders')">📦 Orders</button>
     </div>
 
     <!-- DASHBOARD -->
     <div id="admin-dashboard" class="admin-section active">
       <div class="admin-grid">
-        <div class="stat-card"><div class="stat-num">10</div><div class="stat-label">Products</div></div>
+        <div class="stat-card"><div class="stat-num" id="stat-products">10</div><div class="stat-label">Products</div></div>
         <div class="stat-card"><div class="stat-num">$0</div><div class="stat-label">Revenue Today</div></div>
         <div class="stat-card"><div class="stat-num">0</div><div class="stat-label">Orders</div></div>
         <div class="stat-card"><div class="stat-num">✅</div><div class="stat-label">Stripe Connected</div></div>
@@ -455,12 +455,12 @@ footer{background:#222;color:white;padding:36px 30px 20px;margin-top:50px}
     <div id="admin-contact-settings" class="admin-section">
       <div class="policy-section" style="margin:0;max-width:600px">
         <h2>Contact Information</h2>
-        <p style="margin-bottom:20px;color:#888">Changes here update your Contact page and all policy pages.</p>
-        <div class="form-group"><label>Business Phone</label><input type="text" id="admin-phone" placeholder="(606) 980-0000" value="(606) 980-0000"></div>
-        <div class="form-group"><label>Business Email</label><input type="email" id="admin-email" placeholder="support@glowbeautystore.com" value="support@glowbeautystore.com"></div>
-        <div class="form-group"><label>Business Address Line 1</label><input type="text" id="admin-addr1" placeholder="606 Glow Beauty Blvd, Suite 100" value="606 Glow Beauty Blvd, Suite 100"></div>
-        <div class="form-group"><label>City / State / ZIP</label><input type="text" id="admin-addr2" placeholder="Leesburg, VA 20175" value="Leesburg, VA 20175"></div>
-        <div class="form-group"><label>Business Hours</label><input type="text" id="admin-hours" placeholder="Mon–Fri 9am–6pm EST" value="Mon–Fri 9am–6pm EST"></div>
+        <p style="margin-bottom:20px;color:#888">Changes here update your Contact page, the footer, and the homepage support line.</p>
+        <div class="form-group"><label>Business Phone</label><input type="text" id="admin-phone" placeholder="(606) 980-0000"></div>
+        <div class="form-group"><label>Business Email</label><input type="email" id="admin-email" placeholder="support@glowbeautystore.com"></div>
+        <div class="form-group"><label>Business Address Line 1</label><input type="text" id="admin-addr1" placeholder="606 Glow Beauty Blvd, Suite 100"></div>
+        <div class="form-group"><label>City / State / ZIP</label><input type="text" id="admin-addr2" placeholder="Leesburg, VA 20175"></div>
+        <div class="form-group"><label>Business Hours</label><input type="text" id="admin-hours" placeholder="Mon–Fri 9am–6pm EST"></div>
         <button class="save-btn" onclick="saveContactInfo()">Save Contact Info</button>
       </div>
     </div>
@@ -495,10 +495,10 @@ footer{background:#222;color:white;padding:36px 30px 20px;margin-top:50px}
     </div>
     <div class="footer-col">
       <h4>Customer Support</h4>
-      <p>📞 (606) 980-0000</p>
-      <p>✉️ support@glowbeautystore.com</p>
-      <p>🏢 606 Glow Beauty Blvd, Suite 100<br>Leesburg, VA 20175</p>
-      <p style="margin-top:6px">Mon–Fri 9am–6pm EST</p>
+      <p id="foot-phone">📞 (606) 980-0000</p>
+      <p id="foot-email">✉️ support@glowbeautystore.com</p>
+      <p id="foot-address">🏢 606 Glow Beauty Blvd, Suite 100<br>Leesburg, VA 20175</p>
+      <p id="foot-hours" style="margin-top:6px">Mon–Fri 9am–6pm EST</p>
     </div>
   </div>
   <div class="footer-bottom">
@@ -533,8 +533,12 @@ footer{background:#222;color:white;padding:36px 30px 20px;margin-top:50px}
 <div class="toast" id="toast"></div>
 
 <script>
-// ========== PRODUCTS DATA ==========
-let products = [
+// ========== STORAGE KEYS ==========
+const STORE_PRODUCTS = 'glow_products_v1';
+const STORE_CONTACT  = 'glow_contact_v1';
+
+// ========== DEFAULT DATA ==========
+const defaultProducts = [
   {id:1,name:"Vitamin C Serum",desc:"Brightens skin, reduces dark spots, and gives a healthy glow.",price:24.99,img:"https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?w=400&h=300&fit=crop"},
   {id:2,name:"Hydrating Face Cream",desc:"Deep moisturizing cream suitable for all skin types.",price:19.99,img:"https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=400&h=300&fit=crop"},
   {id:3,name:"Aloe Vera Gel",desc:"Soothes irritated skin and provides long-lasting hydration.",price:12.99,img:"https://images.unsplash.com/photo-1618939304347-e91b1f33d2ab?w=400&h=300&fit=crop"},
@@ -547,8 +551,44 @@ let products = [
   {id:10,name:"Night Repair Cream",desc:"Repairs and rejuvenates skin while you sleep.",price:26.99,img:"https://images.unsplash.com/photo-1583241800698-e8ab01830a58?w=400&h=300&fit=crop"}
 ];
 
+const defaultContact = {
+  phone:"(606) 980-0000",
+  email:"support@glowbeautystore.com",
+  addr1:"606 Glow Beauty Blvd, Suite 100",
+  addr2:"Leesburg, VA 20175",
+  hours:"Mon–Fri 9am–6pm EST"
+};
+
+// ========== STORAGE HELPERS (safe — degrade gracefully if storage is blocked) ==========
+function loadProducts(){
+  try{
+    const raw = localStorage.getItem(STORE_PRODUCTS);
+    if(raw){ const arr = JSON.parse(raw); if(Array.isArray(arr) && arr.length) return arr; }
+  }catch(e){ console.warn('Storage read failed (products):', e); }
+  return JSON.parse(JSON.stringify(defaultProducts));
+}
+function persistProducts(){
+  try{ localStorage.setItem(STORE_PRODUCTS, JSON.stringify(products)); }
+  catch(e){ console.warn('Storage write failed (products):', e); }
+}
+function loadContact(){
+  try{
+    const raw = localStorage.getItem(STORE_CONTACT);
+    if(raw){ return Object.assign({}, defaultContact, JSON.parse(raw)); }
+  }catch(e){ console.warn('Storage read failed (contact):', e); }
+  return Object.assign({}, defaultContact);
+}
+function persistContact(c){
+  try{ localStorage.setItem(STORE_CONTACT, JSON.stringify(c)); }
+  catch(e){ console.warn('Storage write failed (contact):', e); }
+}
+
+// ========== STATE ==========
+let products = loadProducts();
+let contact  = loadContact();
 let cart = [];
 let editingId = null;
+let modalImg = '';   // single source of truth for the image being edited/added
 
 // ========== RENDER PRODUCTS ==========
 function renderProducts(){
@@ -612,6 +652,7 @@ function adminLogin(){
   const p=document.getElementById('admin-pass').value;
   if(u==='admin'&&p==='admin123'){
     showPage('admin');
+    fillContactForm();
     renderAdminProducts();
   } else {
     showToast('Invalid credentials. Try admin / admin123');
@@ -620,11 +661,11 @@ function adminLogin(){
 
 function adminLogout(){showPage('home');}
 
-function adminTab(tab){
+function adminTab(ev,tab){
   document.querySelectorAll('.admin-section').forEach(s=>s.classList.remove('active'));
   document.querySelectorAll('.admin-tab').forEach(t=>t.classList.remove('active'));
   document.getElementById('admin-'+tab).classList.add('active');
-  event.target.classList.add('active');
+  if(ev && ev.currentTarget) ev.currentTarget.classList.add('active');
 }
 
 function renderAdminProducts(){
@@ -641,11 +682,14 @@ function renderAdminProducts(){
         </div>
       </div>
     </div>`).join('');
+  const statEl = document.getElementById('stat-products');
+  if(statEl) statEl.textContent = products.length;
 }
 
 function openEditProduct(id){
   const p = products.find(x=>x.id===id);
   editingId = id;
+  modalImg = p.img || '';
   document.getElementById('modal-title').textContent = 'Edit Product';
   document.getElementById('modal-name').value = p.name;
   document.getElementById('modal-desc').value = p.desc;
@@ -659,11 +703,14 @@ function openEditProduct(id){
 
 function openAddProduct(){
   editingId = null;
+  modalImg = '';
   document.getElementById('modal-title').textContent = 'Add Product';
   document.getElementById('modal-name').value='';
   document.getElementById('modal-desc').value='';
   document.getElementById('modal-price').value='';
-  document.getElementById('photo-preview').style.display='none';
+  const prev = document.getElementById('photo-preview');
+  prev.removeAttribute('src');      // avoid .src resolving to the page URL
+  prev.style.display='none';
   document.getElementById('upload-hint').style.display='block';
   document.getElementById('edit-modal').classList.add('open');
 }
@@ -675,8 +722,9 @@ function previewPhoto(input){
   if(!file) return;
   const reader = new FileReader();
   reader.onload = e=>{
+    modalImg = e.target.result;           // store the data URL in state
     const prev = document.getElementById('photo-preview');
-    prev.src = e.target.result;
+    prev.src = modalImg;
     prev.style.display='block';
     document.getElementById('upload-hint').style.display='none';
   };
@@ -687,17 +735,22 @@ function saveProduct(){
   const name = document.getElementById('modal-name').value.trim();
   const desc = document.getElementById('modal-desc').value.trim();
   const price = parseFloat(document.getElementById('modal-price').value);
-  const img = document.getElementById('photo-preview').src || '';
 
-  if(!name||!price){showToast('Please fill in name and price.');return;}
+  if(!name || isNaN(price)){ showToast('Please fill in name and a valid price.'); return; }
 
   if(editingId){
     const p = products.find(x=>x.id===editingId);
     p.name=name; p.desc=desc; p.price=price;
-    if(img && !img.includes('placeholder')) p.img=img;
+    if(modalImg) p.img=modalImg;
   } else {
-    products.push({id:Date.now(),name,desc,price,img:img||`https://via.placeholder.com/400x300?text=${encodeURIComponent(name)}`});
+    products.push({
+      id: Date.now(),
+      name, desc, price,
+      img: modalImg || `https://via.placeholder.com/400x300?text=${encodeURIComponent(name)}`
+    });
   }
+
+  persistProducts();        // <-- changes now survive a reload
   closeModal();
   renderProducts();
   renderAdminProducts();
@@ -707,20 +760,47 @@ function saveProduct(){
 function deleteProduct(id){
   if(!confirm('Delete this product?')) return;
   products = products.filter(x=>x.id!==id);
+  persistProducts();
   renderProducts();
   renderAdminProducts();
   showToast('Product deleted.');
 }
 
-function saveContactInfo(){
-  const phone = document.getElementById('admin-phone').value;
-  const email = document.getElementById('admin-email').value;
-  const addr1 = document.getElementById('admin-addr1').value;
-  const addr2 = document.getElementById('admin-addr2').value;
+// ========== CONTACT INFO ==========
+function applyContact(){
+  // Contact page
+  const cAddr = document.getElementById('contact-address');
+  if(cAddr) cAddr.innerHTML = contact.addr1+'<br>'+contact.addr2+'<br>United States';
+  const cPhone = document.getElementById('contact-phone'); if(cPhone) cPhone.textContent = contact.phone;
+  const cEmail = document.getElementById('contact-email'); if(cEmail) cEmail.textContent = contact.email;
+  const cHours = document.getElementById('contact-hours'); if(cHours) cHours.textContent = contact.hours;
+  // Footer
+  const fPhone = document.getElementById('foot-phone'); if(fPhone) fPhone.textContent = '📞 '+contact.phone;
+  const fEmail = document.getElementById('foot-email'); if(fEmail) fEmail.textContent = '✉️ '+contact.email;
+  const fAddr  = document.getElementById('foot-address'); if(fAddr) fAddr.innerHTML = '🏢 '+contact.addr1+'<br>'+contact.addr2;
+  const fHours = document.getElementById('foot-hours'); if(fHours) fHours.textContent = contact.hours;
+  // Homepage support card
+  const pPhone = document.getElementById('policy-phone'); if(pPhone) pPhone.textContent = contact.phone;
+}
 
-  document.getElementById('contact-phone').textContent = phone;
-  document.getElementById('contact-email').textContent = email;
-  document.getElementById('contact-address').innerHTML = addr1+'<br>'+addr2+'<br>United States';
+function fillContactForm(){
+  document.getElementById('admin-phone').value = contact.phone;
+  document.getElementById('admin-email').value = contact.email;
+  document.getElementById('admin-addr1').value = contact.addr1;
+  document.getElementById('admin-addr2').value = contact.addr2;
+  document.getElementById('admin-hours').value = contact.hours;
+}
+
+function saveContactInfo(){
+  contact = {
+    phone: document.getElementById('admin-phone').value.trim(),
+    email: document.getElementById('admin-email').value.trim(),
+    addr1: document.getElementById('admin-addr1').value.trim(),
+    addr2: document.getElementById('admin-addr2').value.trim(),
+    hours: document.getElementById('admin-hours').value.trim()
+  };
+  persistContact(contact);
+  applyContact();
   showToast('Contact info saved!');
 }
 
@@ -733,6 +813,7 @@ function showToast(msg){
 }
 
 // ========== INIT ==========
+applyContact();
 renderProducts();
 </script>
 </body>
